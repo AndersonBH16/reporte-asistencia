@@ -1,7 +1,7 @@
 <?php
 
+use App\Http\Controllers\PersonaController;
 use App\Http\Controllers\UsersController;
-use App\Livewire\ListUsers;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -16,8 +16,6 @@ Route::middleware([
     Route::get('/dashboard', function () {
         return view('dashboard');
     })->name('dashboard');
-    Route::get('/asistencia', function () {
-        return view('asistencia.index');
-    })->name('asistencia');
+    Route::get('/asistencia', [PersonaController::class, 'index'])->name('asistencia');
     Route::get('/users', [UsersController::class, 'index'])->name('users');
 });
