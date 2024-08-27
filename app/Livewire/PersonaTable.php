@@ -19,6 +19,7 @@ class PersonaTable extends DataTableComponent
             ->setSingleSortingDisabled()
             ->setHideReorderColumnUnlessReorderingEnabled()
             ->setFilterLayoutSlideDown()
+            ->setLoadingPlaceholderBlade('');
         ;
     }
 
@@ -43,12 +44,19 @@ class PersonaTable extends DataTableComponent
             Column::make("Condición", "usuarios.condicion")
                 ->sortable()
                 ->searchable(),
+            Column::make("Unidad", "usuarios.unidad.unidad")
+                ->sortable()
+                ->searchable(),
+            Column::make("Local", "usuarios.unidad.local.descripcion")
+                ->sortable()
+                ->searchable(),
         ];
     }
 
     public function builder(): Builder
     {
-        return Persona::query();
+        return Persona::query()
+            ->with(['usuarios.unidad.local']);
     }
 
     public function filters(): array

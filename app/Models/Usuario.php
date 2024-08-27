@@ -16,4 +16,8 @@ class Usuario extends Model
     public function persona(){
         return $this->belongsTo(Persona::class, 'idpers');
     }
+
+    public function unidad(){
+        return $this->belongsTo(Unidad::class, 'idunidad');
+    }
 }
